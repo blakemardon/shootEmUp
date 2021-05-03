@@ -41,6 +41,13 @@ public class BulletController : MonoBehaviour
                 enemy.OnHit();
                 Destroy(gameObject);
             }
+            HardEnemyController hardEnemy;
+            if (collider.gameObject.TryGetComponent<HardEnemyController>(out hardEnemy))
+            {
+                hardEnemy.OnHit();
+                Destroy(gameObject);
+            }
+            
         }
         else if(type == BulletType.EnemyBullet){
             PlayerController player;

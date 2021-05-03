@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public void OnHit(){
+        HighscoreContoller.score += 50;
         Destroy(gameObject);
     }
 }

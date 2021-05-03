@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour
         movement.x += Input.GetAxisRaw("Horizontal");
         movement.y += Input.GetAxisRaw("Vertical");
         movement.Normalize();
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
-        Debug.Log(Input.GetAxisRaw("Vertical"));
         transform.position += movement * (float)Time.deltaTime * (float)speed;
 
         fireTimer += Time.deltaTime;

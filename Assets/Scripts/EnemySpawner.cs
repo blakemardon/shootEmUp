@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject hardEnemy;
     public GameObject winText;
 
     int level;
@@ -20,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (gameObject.transform.childCount == 0){
             level++;
-            if(level < 6){
+            if(level < 12){
                 SpawnEnimies();
             }
             else {
@@ -31,10 +32,26 @@ public class EnemySpawner : MonoBehaviour
     }
 
     void SpawnEnimies(){
-        Instantiate(enemy, new Vector3(0, 3.5f, 0), enemy.transform.rotation, transform);
-        for (int i = 1; i <= level; i++){
-            Instantiate(enemy, new Vector3(1.5f * i, 3.5f, 0), enemy.transform.rotation, transform);
-            Instantiate(enemy, new Vector3(1.5f * i * -1, 3.5f, 0), enemy.transform.rotation, transform);
+        if(level < 6){
+            Instantiate(enemy, new Vector3(0, 3.5f, 0), enemy.transform.rotation, transform);
+            for (int i = 1; i <= level; i++)
+            {
+                Instantiate(enemy, new Vector3(1.5f * i, 3.5f, 0), enemy.transform.rotation, transform);
+                Instantiate(enemy, new Vector3(1.5f * i * -1, 3.5f, 0), enemy.transform.rotation, transform);
+            }
+        }
+        else{
+            Instantiate(hardEnemy, new Vector3(0, 3.5f, 0), enemy.transform.rotation, transform);
+            int i = 7;
+            for (; i <= level; i++)
+            {
+                Instantiate(hardEnemy, new Vector3(1.5f * (i-6), 3.5f, 0), enemy.transform.rotation, transform);
+                Instantiate(hardEnemy, new Vector3(1.5f * (i-6) * -1, 3.5f, 0), enemy.transform.rotation, transform);
+            }
+            for(; i < 12; i++){
+                Instantiate(enemy, new Vector3(1.5f * (i-6), 3.5f, 0), enemy.transform.rotation, transform);
+                Instantiate(enemy, new Vector3(1.5f * (i-6) * -1, 3.5f, 0), enemy.transform.rotation, transform);
+            }
         }
         
     }
